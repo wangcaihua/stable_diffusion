@@ -42,7 +42,7 @@ python app.py
 ### Using web interface
 
 Input what you like in `prompt`, such as "An astronaut riding a horse"
-![text_to_image](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/text_to_image.png?raw=true)
+![text_to_image](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/text_to_image.png)
 
 Input as image and a mask, we will change background for your, just like the following:
 ![image_to_image_with_mask](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/image_to_image_with_mask.png)
