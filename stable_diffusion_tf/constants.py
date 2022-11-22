@@ -1,4 +1,5 @@
-PYTORCH_CKPT_MAPPING = {'text_encoder': [('cond_stage_model.transformer.text_model.embeddings.token_embedding.weight',
+PYTORCH_CKPT_MAPPING = {
+  'text_encoder': [('cond_stage_model.transformer.text_model.embeddings.token_embedding.weight',
    None),
   ('cond_stage_model.transformer.text_model.embeddings.position_embedding.weight',
    None),

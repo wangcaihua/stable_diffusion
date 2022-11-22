@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 import tensorflow_addons as tfa
 
-from .layers import apply_seq, PaddedConv2D
+from stable_diffusion_tf.layers import apply_seq, PaddedConv2D
 
 
 class AttentionBlock(keras.layers.Layer):
@@ -14,7 +14,7 @@ class AttentionBlock(keras.layers.Layer):
         self.v = PaddedConv2D(channels, 1)
         self.proj_out = PaddedConv2D(channels, 1)
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         h_ = self.norm(x)
         q, k, v = self.q(h_), self.k(h_), self.v(h_)
 
@@ -50,7 +50,7 @@ class ResnetBlock(keras.layers.Layer):
             else lambda x: x
         )
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         h = self.conv1(keras.activations.swish(self.norm1(x)))
         h = self.conv2(keras.activations.swish(self.norm2(h)))
         return self.nin_shortcut(x) + h

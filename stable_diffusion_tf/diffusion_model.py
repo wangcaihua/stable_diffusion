@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 import tensorflow_addons as tfa
 
-from .layers import PaddedConv2D, apply_seq, td_dot, GEGLU
+from stable_diffusion_tf.layers import PaddedConv2D, apply_seq, td_dot, GEGLU
 
 
 class ResBlock(keras.layers.Layer):
@@ -26,7 +26,7 @@ class ResBlock(keras.layers.Layer):
             PaddedConv2D(out_channels, 1) if channels != out_channels else lambda x: x
         )
 
-    def call(self, inputs):
+    def call(self, inputs, **kwargs):
         x, emb = inputs
         h = apply_seq(x, self.in_layers)
         emb_out = apply_seq(emb, self.emb_layers)
@@ -47,7 +47,7 @@ class CrossAttention(keras.layers.Layer):
         self.head_size = d_head
         self.to_out = [keras.layers.Dense(n_heads * d_head)]
 
-    def call(self, inputs):
+    def call(self, inputs, **kwargs):
         assert type(inputs) is list
         if len(inputs) == 1:
             inputs = inputs + [None]
@@ -86,7 +86,7 @@ class BasicTransformerBlock(keras.layers.Layer):
         self.geglu = GEGLU(dim * 4)
         self.dense = keras.layers.Dense(dim)
 
-    def call(self, inputs):
+    def call(self, inputs, **kwargs):
         x, context = inputs
         x = self.attn1([self.norm1(x)]) + x
         x = self.attn2([self.norm2(x), context]) + x
@@ -102,7 +102,7 @@ class SpatialTransformer(keras.layers.Layer):
         self.transformer_blocks = [BasicTransformerBlock(channels, n_heads, d_head)]
         self.proj_out = PaddedConv2D(channels, 1)
 
-    def call(self, inputs):
+    def call(self, inputs, **kwargs):
         x, context = inputs
         b, h, w, c = x.shape
         x_in = x
@@ -120,7 +120,7 @@ class Downsample(keras.layers.Layer):
         super().__init__()
         self.op = PaddedConv2D(channels, 3, stride=2, padding=1)
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         return self.op(x)
 
 
@@ -130,7 +130,7 @@ class Upsample(keras.layers.Layer):
         self.ups = keras.layers.UpSampling2D(size=(2, 2))
         self.conv = PaddedConv2D(channels, 3, padding=1)
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         x = self.ups(x)
         return self.conv(x)
 
@@ -190,7 +190,7 @@ class UNetModel(keras.models.Model):
             PaddedConv2D(4, kernel_size=3, padding=1),
         ]
 
-    def call(self, inputs):
+    def call(self, inputs, **kwargs):
         x, t_emb, context = inputs
         emb = apply_seq(t_emb, self.time_embed)
 

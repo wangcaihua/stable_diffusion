@@ -7,3 +7,9 @@ tqdm==4.64.1
 protobuf==3.19
 ftfy==6.1.1
 regex==2022.9.13
+dash==2.7.0
+dash-bootstrap-components==1.2.1
+dash-canvas==0.1.0
+psutil==5.9.4
+multiprocess==0.70.14
+diskcache==5.4.0

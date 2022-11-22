@@ -10,7 +10,7 @@ class PaddedConv2D(keras.layers.Layer):
             channels, kernel_size, strides=(stride, stride)
         )
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         x = self.padding2d(x)
         return self.conv2d(x)
 
@@ -21,7 +21,7 @@ class GEGLU(keras.layers.Layer):
         self.proj = keras.layers.Dense(dim_out * 2)
         self.dim_out = dim_out
 
-    def call(self, x):
+    def call(self, x, **kwargs):
         xp = self.proj(x)
         x, gate = xp[..., : self.dim_out], xp[..., self.dim_out :]
         return x * gelu(gate)
