@@ -42,16 +42,16 @@ python app.py
 ### Using web interface
 
 Input what you like in `prompt`, such as "An astronaut riding a horse"
-![text_to_image](./assets/imgs/text_to_image.png)
+![text_to_image](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/text_to_image.png)
 
 Input as image and a mask, we will change background for your, just like the following:
-![image_to_image_with_mask](./assets/imgs/image_to_image_with_mask.png)
+![image_to_image_with_mask](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/image_to_image_with_mask.png)
 
 As you see, the masked part kept.
-![image_to_image_running](./assets/imgs/image_to_image_running.png)
+![image_to_image_running](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/image_to_image_running.png)
 
 The result as following,
-![image_to_image_result](./assets/imgs/image_to_image_result.png)
+![image_to_image_result](https://github.com/wangcaihua/stable_diffusion/blob/master/assets/imgs/image_to_image_result.png)
 
 ### Using the Python interface
 
