@@ -28,51 +28,30 @@ The easiest way to try it out is to use one of the Colab notebooks:
 
 ### Install as a python package
 
-Install using pip with the git repo:
-
 ```bash
-pip install git+https://github.com/divamgupta/stable-diffusion-tensorflow
-```
-
-### Installing using the repo
-
-Download the repo, either by downloading the
-[zip](https://github.com/divamgupta/stable-diffusion-tensorflow/archive/refs/heads/master.zip)
-file or by cloning the repo with git:
-
-```bash
-git clone git@github.com:divamgupta/stable-diffusion-tensorflow.git
-```
-
-#### Using pip without a virtual environment
-
-Install dependencies using the `requirements.txt` file or the `requirements_m1.txt` file,:
-
-```bash
+conda create --name pydf python=3.8
+conda activate pydf 
+git clone git@github.com:wangcaihua/stable_diffusion.git
+cd stable_diffusion
 pip install -r requirements.txt
+python app.py
 ```
-
-#### Using a virtual environment with *virtualenv*
-
-1) Create your virtual environment for `python3`:
-
-    ```bash
-    python3 -m venv venv
-    ```
-   
-2) Activate your virtualenv:
-
-    ```bash
-    source venv/bin/activate
-    ```
-
-3) Install dependencies using the `requirements.txt` file or the `requirements_m1.txt` file,:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
+> Note: if you have problem in GPU, set `jit_compile=True` in app.py
 
 ## Usage
+### Using web interface
+
+Input what you like in `prompt`, such as "An astronaut riding a horse"
+![text_to_image](./assets/imgs/text_to_image.png)
+
+Input as image and a mask, we will change background for your, just like the following:
+![image_to_image_with_mask](./assets/imgs/image_to_image_with_mask.png)
+
+As you see, the masked part kept.
+![image_to_image_running](./assets/imgs/image_to_image_running.png)
+
+The result as following,
+![image_to_image_result](./assets/imgs/image_to_image_result.png)
 
 ### Using the Python interface
 
