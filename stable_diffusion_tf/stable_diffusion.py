@@ -286,7 +286,7 @@ def get_models(img_height, img_width, download_weights=True):
 
 @lru_cache
 def get_or_create_generate(img_height=1000, img_width=1000,
-                           jit_compile=False,
+                           jit_compile=True if tf.test.is_gpu_available() else False,
                            download_weights=True):
   print('get_or_create_stable_diffusion')
   return StableDiffusion(img_height, img_width, jit_compile, download_weights)
