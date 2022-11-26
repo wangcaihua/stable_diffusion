@@ -279,6 +279,8 @@ def do_compute(set_progress, n_clicks, prompt, negative_prompt, height, width, n
     if input_mask_array is not None:
       decoded = input_image_array * (1 - input_mask_array) + np.array(decoded) * input_mask_array
     img = np.clip(decoded, 0, 255).astype("uint8")
+    # out_img = Image.fromarray(np.squeeze(img))
+    # out_img.save(f'/Users/fitz/code/stable_diffusion/assets/image_{progress}.png')
     set_progress((progress, html.Img(src=array_to_data_url(img[0]))))
   
   generator = get_or_create_generate(

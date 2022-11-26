@@ -212,7 +212,6 @@ def _make_job_fn(fn, cache, progress):
 
 
 def parse_jsonstring(string, shape=None, scale=1):
-
   if shape is None:
     shape = (500, 500)
   mask = np.zeros(shape, dtype=np.uint8)
@@ -231,8 +230,8 @@ def parse_jsonstring(string, shape=None, scale=1):
       mask_bool = np.zeros(shape, dtype=np.bool)
       mask_bool[inds[0], inds[1]] = 1
       mask_bool = ndimage.binary_dilation(mask_bool,
-                                         morphology.disk(radius))
-
+                                          morphology.disk(radius))
+      
       alpha = float(obj['stroke'].strip('{}()').split(',')[-1])
       mask_int8 = np.zeros(shape, dtype=np.uint8)
       mask_int8[mask_bool] = int(alpha * 255)

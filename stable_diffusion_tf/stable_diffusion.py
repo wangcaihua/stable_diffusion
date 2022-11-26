@@ -10,7 +10,7 @@ from stable_diffusion_tf.autoencoder_kl import Decoder, Encoder
 from stable_diffusion_tf.diffusion_model import UNetModel
 from stable_diffusion_tf.clip_encoder import CLIPTextTransformer
 from stable_diffusion_tf.clip_tokenizer import SimpleTokenizer
-from stable_diffusion_tf.constants import _UNCONDITIONAL_TOKENS, _ALPHAS_CUMPROD, PYTORCH_CKPT_MAPPING
+from stable_diffusion_tf.constants import _UNCONDITIONAL_TOKENS, _ALPHAS_CUMPROD
 from PIL import Image
 import base64
 from io import BytesIO
@@ -167,7 +167,6 @@ class StableDiffusion:
     return np.clip(decoded, 0, 255).astype("uint8")
   
   def timestep_embedding(self, timesteps, dim=320, max_period=10000):
-    # Box-Muller
     half = dim // 2
     freqs = np.exp(
       -math.log(max_period) * np.arange(0, half, dtype="float32") / half
