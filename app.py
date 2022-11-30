@@ -289,7 +289,7 @@ def do_compute(set_progress, n_clicks, prompt, negative_prompt, height, width, n
   )
   
   img = generator.generate(
-    prompt=prompt or "iron men fly in the sky",
+    prompt=prompt,
     negative_prompt=negative_prompt,
     num_steps=int(num_steps),
     unconditional_guidance_scale=float(guidance_scale),
