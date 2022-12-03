@@ -217,7 +217,7 @@ class StableDiffusion:
     unconditional_latent = self.diffusion_model.predict_on_batch(
       [latent, t_emb, unconditional_context]
     )
-    if context:
+    if not(context is None or isinstance(context, str)):
       latent = self.diffusion_model.predict_on_batch([latent, t_emb, context])
       return unconditional_latent + unconditional_guidance_scale * (
           latent - unconditional_latent

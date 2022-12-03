@@ -181,7 +181,7 @@ def update_mask(trigger, image_content, img_stat_clicks, img_stat_label, mak_sta
     if image_content is None or image_content.get('props') is None or image_content['props'].get('src') is None:
       raise PreventUpdate()
     if button_title == 'Reset':
-      return no_update, "Save", no_update, no_update, no_update, no_update, no_update
+      return image_content['props']['src'], "Save", no_update, no_update, no_update, no_update, no_update
     elif button_title == 'Save':
       need_reverse = reverse == 'Reverse'
       mask = parse_jsonstring(json_data, (int(width), int(height)))
